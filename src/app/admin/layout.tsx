@@ -1,5 +1,7 @@
 import { Nav, NavLink } from "@/components/Nav";
 
+export const dynamic = "force-dynamic"; //force the nexjs to not cash any of our admin pages
+
 export default function AdminLayout({
   children,
 }: Readonly<{
@@ -13,7 +15,7 @@ export default function AdminLayout({
         <NavLink href="/admin/users">Customers</NavLink>
         <NavLink href="/admin/orders">Sales</NavLink>
       </Nav>
-      <div className="container m-6">{children}</div>
+      <div className="contain-inline-size m-6">{children}</div>
     </>
   );
 }
