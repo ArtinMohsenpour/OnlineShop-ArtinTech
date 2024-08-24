@@ -8,10 +8,10 @@ export default function AdminLayout({
   return (
     <>
       <Nav>
-        <NavLink href="./admin">Dashboard</NavLink>
-        <NavLink href="./admin/products">products</NavLink>
-        <NavLink href="./admin/users">Customers</NavLink>
-        <NavLink href="./admin/orders">Sales</NavLink>
+        <NavLink href="/admin">Dashboard</NavLink>
+        <NavLink href="/admin/products">products</NavLink>
+        <NavLink href="/admin/users">Customers</NavLink>
+        <NavLink href="/admin/orders">Sales</NavLink>
       </Nav>
       <div className="container m-6">{children}</div>
     </>
