@@ -43,9 +43,7 @@ function ProductsTable() {
           </TableHead>
         </TableRow>
       </TableHeader>
-      <TableBody>
-       
-      </TableBody>
+      <TableBody></TableBody>
     </Table>
   );
 }
