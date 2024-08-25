@@ -44,11 +44,7 @@ function ProductsTable() {
         </TableRow>
       </TableHeader>
       <TableBody>
-        <TableRow>
-          <TableCell>Paid</TableCell>
-          <TableCell>Credit Card</TableCell>
-          <TableCell className="">$250.00</TableCell>
-        </TableRow>
+       
       </TableBody>
     </Table>
   );

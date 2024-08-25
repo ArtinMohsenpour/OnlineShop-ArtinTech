@@ -3,6 +3,7 @@
 import db from "@/db/db";
 import { z } from "zod";
 import fs from "fs/promises"; //for storing file in order to have access to its path
+import { redirect } from "next/navigation";
 
 const fileSchema = z.instanceof(File, { message: "Required" });
 const imageSchema = fileSchema.refine(
@@ -18,10 +19,11 @@ const addSchema = z.object({
   image: imageSchema.refine((file) => file.size > 0, "Required"),
 });
 
-export async function addProduct(formData: FormData) {
+export async function addProduct(prevState: unknown, formData: FormData) {
   const result = addSchema.safeParse(Object.fromEntries(formData.entries()));
 
   if (result.success === false) {
+    console.log(result.error.formErrors.fieldErrors);
     return result.error.formErrors.fieldErrors;
   }
   console.log(result);
@@ -32,7 +34,7 @@ export async function addProduct(formData: FormData) {
   await fs.writeFile(filePath, Buffer.from(await data.file.arrayBuffer())); // standard way to receive a file in any format and convert it to a buffer that js can read
 
   await fs.mkdir("public/products", { recursive: true });
-  const imagePath = `products/${crypto.randomUUID()}-${data.image.name}`;
+  const imagePath = `/products/${crypto.randomUUID()}-${data.image.name}`;
   await fs.writeFile(
     `public${imagePath}`,
     Buffer.from(await data.image.arrayBuffer())
@@ -47,4 +49,6 @@ export async function addProduct(formData: FormData) {
       imagePath,
     },
   });
+
+  redirect("/admin/products");
 }
