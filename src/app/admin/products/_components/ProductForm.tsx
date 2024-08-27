@@ -14,12 +14,12 @@ export function ProductForm() {
   const [error, action] = useFormState(addProduct, {});
 
   return (
-    <form action={action} className="space-y-8">
+    <form action={action} className="space-y-8  container">
       <div className="space-y-2">
         <Label className="ml-2" htmlFor="name">
           Name
         </Label>
-        <Input type="text" id="name" name="name" required />
+        <Input className="w-[50%]" type="text" id="name" name="name" required />
         {error.name && <div className="text-destructive">{error.name}</div>}
       </div>
       <div className="space-y-2">
@@ -30,6 +30,7 @@ export function ProductForm() {
           type="number"
           id="priceInCents"
           name="priceInCents"
+          className="w-[50%]"
           required
           value={priceInCents}
           onChange={(e) => setPriceInCents(Number(e.target.value) || undefined)}
@@ -46,7 +47,12 @@ export function ProductForm() {
         <Label className="ml-2" htmlFor="description">
           Description
         </Label>
-        <Textarea id="description" name="description" required />
+        <Textarea
+          className="w-[50%]"
+          id="description"
+          name="description"
+          required
+        />
         {error.description && (
           <div className="text-destructive">{error.description}</div>
         )}
@@ -55,14 +61,20 @@ export function ProductForm() {
         <Label className="ml-2" htmlFor="file">
           File
         </Label>
-        <Input type="file" id="file" name="file" required />
+        <Input className="w-[50%]" type="file" id="file" name="file" required />
         {error.file && <div className="text-destructive">{error.file}</div>}
       </div>
       <div className="space-y-2">
         <Label className="ml-2" htmlFor="file">
           Image
         </Label>
-        <Input type="file" id="image" name="image" required />
+        <Input
+          className="w-[50%]"
+          type="file"
+          id="image"
+          name="image"
+          required
+        />
         {error.image && <div className="text-destructive">{error.image}</div>}
       </div>
 

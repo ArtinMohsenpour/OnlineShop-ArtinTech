@@ -9,7 +9,7 @@ export default function AdminLayout({
 }>) {
   return (
     <>
-      <Nav>
+      <Nav >
         <NavLink href="/admin">Dashboard</NavLink>
         <NavLink href="/admin/products">products</NavLink>
         <NavLink href="/admin/users">Customers</NavLink>
