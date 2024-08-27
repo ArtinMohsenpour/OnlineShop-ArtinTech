@@ -17,13 +17,18 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  ActiveToggleDropdownItem,
+  DeleteDropdownMenu,
+} from "./_components/ProductActions";
 
 export default function AdminProductsPage() {
   return (
     <>
-      <div className="flex justify-between items-center gap-4">
+      <div className="flex justify-between items-center gap-4 container">
         <PageHeader>Products</PageHeader>
         <Button className="bg-blue-500" asChild>
           <Link href="/admin/products/new" className="">
@@ -51,7 +56,7 @@ async function ProductsTable() {
 
   if (products.length === 0)
     return (
-      <p className="font-semibold text-red-900 left-[50%]">
+      <p className="font-semibold text-red-500 text-center container mt-12">
         No products found!
       </p>
     );
@@ -77,12 +82,12 @@ async function ProductsTable() {
             <TableCell>
               {product.isAvailableForPurchase ? (
                 <>
-                  <CheckCircle2 />
+                  <CheckCircle2 className="stroke-green-600" />
                   <span className="sr-only">Avaiable</span>
                 </>
               ) : (
                 <>
-                  <XCircle />
+                  <XCircle className="stroke-destructive" />
                   <span className="sr-only">Unavaiable</span>
                 </>
               )}
@@ -103,8 +108,19 @@ async function ProductsTable() {
                     </a>
                   </DropdownMenuItem>
                   <DropdownMenuItem asChild>
-                    <Link href={`/admin/products/${product.id}/edit`}>Edit</Link>
+                    <Link href={`/admin/products/${product.id}/edit`}>
+                      Edit
+                    </Link>
                   </DropdownMenuItem>
+                  <ActiveToggleDropdownItem
+                    id={product.id}
+                    isAvailableForPurchase={product.isAvailableForPurchase}
+                  />
+                  <DropdownMenuSeparator />
+                  <DeleteDropdownMenu
+                    id={product.id}
+                    disabled={product._count.orders > 0}
+                  />
                 </DropdownMenuContent>
               </DropdownMenu>
             </TableCell>
