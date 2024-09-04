@@ -19,7 +19,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu"; // from shadcn library
 import {
   ActiveToggleDropdownItem,
   DeleteDropdownMenu,
@@ -96,33 +96,33 @@ async function ProductsTable() {
             <TableCell>{formatCurrency(product.priceInCents / 100)}</TableCell>
             <TableCell>{formatNumber(product._count.orders)}</TableCell>
             <TableCell>
-              <DropdownMenu>
-                <DropdownMenuTrigger>
-                  <MoreVertical />
-                  <span className="sr-only">Actions</span>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuItem asChild>
-                    <a download href={`/admin/products/${product.id}/download`}>
-                      Download
-                    </a>
-                  </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link href={`/admin/products/${product.id}/edit`}>
-                      Edit
-                    </Link>
-                  </DropdownMenuItem>
-                  <ActiveToggleDropdownItem
-                    id={product.id}
-                    isAvailableForPurchase={product.isAvailableForPurchase}
-                  />
-                  <DropdownMenuSeparator />
-                  <DeleteDropdownMenu
-                    id={product.id}
-                    disabled={product._count.orders > 0}
-                  />
-                </DropdownMenuContent>
-              </DropdownMenu>
+            <DropdownMenu> 
+              <DropdownMenuTrigger>
+                <MoreVertical />
+                <span className="sr-only">Actions</span>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem asChild>
+                  <a download href={`/admin/products/${product.id}/download`}>
+                    Download
+                  </a>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link href={`/admin/products/${product.id}/edit`}>
+                    Edit
+                  </Link>
+                </DropdownMenuItem>
+                <ActiveToggleDropdownItem
+                  id={product.id}
+                  isAvailableForPurchase={product.isAvailableForPurchase}
+                />
+                <DropdownMenuSeparator />
+                <DeleteDropdownMenu
+                  id={product.id}
+                  disabled={product._count.orders > 0}
+                />
+              </DropdownMenuContent>
+            </DropdownMenu>
             </TableCell>
           </TableRow>
         ))}
