@@ -1,3 +1,4 @@
+import { ProductsCard } from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
 import db from "@/db/db";
 import { Product } from "@prisma/client";
@@ -58,7 +59,9 @@ function ProductsGridSection({
           </Link>
         </Button>
       </div>
-      <div className="grid container grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+      <div className="grid container grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <ProductsCard />
+      </div>
     </div>
   );
 }
